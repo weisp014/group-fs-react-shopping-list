@@ -20,6 +20,19 @@ router.post('/', (req, res) => {
           res.sendStatus(500);
       });
 });
+    
+// GET
+router.get('/', (req, res) => {
+    const sqlText = `SELECT * FROM "shoppingCart";`;
+    pool.query(sqlText)
+        .then( (result) => {
+            res.send(result.rows);
+        })
+        .catch( (err) => {
+            console.log(`Error making DB query ${sqlText}`, error);
+            res.sendStatus(500);
+        });
+});
 
 
 
