@@ -3,7 +3,7 @@ import Header from "../Header/Header.jsx";
 import "./App.css";
 import ShoppingList from "../ShoppingList/ShoppingList.jsx";
 import axios from "axios";
-import Form from "../form/form.jsx";
+import Form from "../Form/Form.jsx";
 
 function App() {
   let [shoppingList, setShoppingList] = useState([]);
@@ -31,7 +31,7 @@ function App() {
       {/* <p>{shoppingList}</p> */}
       <main>
         <p>Under Construction...</p>
-        <Form />
+        <Form getGroceries={getGroceries} />
         <ShoppingList list={shoppingList} />
       </main>
     </div>

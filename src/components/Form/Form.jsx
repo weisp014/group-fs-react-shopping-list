@@ -1,11 +1,14 @@
 import { useState } from "react";
+import axios from "axios";
 
-function Form() {
+function Form({ getGroceries }) {
   let [newItemName, setNewItemName] = useState("");
   let [newQuantity, setNewQuantity] = useState("");
   let [newUnit, setNewUnit] = useState("");
 
-  const addItem = () => {
+  const addItem = (event) => {
+    event.preventDefault();
+    console.log(newItemName);
     axios
       .post("/cart", {
         name: newItemName,
@@ -14,7 +17,11 @@ function Form() {
       })
       .then((response) => {
         // clear inputs & GET requests here
+        getGroceries();
         console.log(response);
+        setNewItemName("");
+        setNewQuantity("");
+        setNewUnit("");
       })
       .catch((err) => {
         alert("Error Adding Item");
@@ -51,7 +58,7 @@ function Form() {
             name="unit"
             onChange={(evt) => setNewUnit(evt.target.value)}
           ></input>
-          <button onSubmit={addItem} type="submit" id="submit" name="submitBtn">
+          <button onClick={addItem} type="submit" id="submit" name="submitBtn">
             Save
           </button>
         </form>
