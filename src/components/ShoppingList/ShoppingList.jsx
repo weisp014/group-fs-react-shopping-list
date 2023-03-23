@@ -1,13 +1,21 @@
+import axios from 'axios';
 
 
-function ShoppingList({ list }) {
+function ShoppingList({ list, getGroceries }) {
     console.log('in ShopList looking at props:', list)
 
 
     // Once purchased, buttons should be hidden and the item should show as "Purchased".
 
-    const buyGrocery = () => {
-        console.log('inside')
+    const buyGrocery = (id) => {
+        console.log('inside BG ()')
+        axios.put(`/cart/${id}`)
+            .then(response => {
+                getGroceries()
+            })
+            .catch(err => {
+                alert('error')
+            })
     }
 
 
@@ -34,7 +42,7 @@ function ShoppingList({ list }) {
                                 {grocery.purchased ? 
                                  <p>Purchased</p>:
                                     <div>
-                                        <button onClick={buyGrocery}>Buy</button>
+                                        <button onClick={() => buyGrocery(grocery.id)}>Buy</button>
                                         <button>Remove</button>
                                     </div> }
 
