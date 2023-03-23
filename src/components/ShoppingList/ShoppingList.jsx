@@ -15,19 +15,16 @@ function ShoppingList({ list }) {
                             <div>{grocery.name}</div>
                         </div>
                         <div>
-                            <div> {grocery.unit} {grocery.unit} </div>
+                            <div> {grocery.quantity} {grocery.unit} </div>
                         </div>
                         <div>
-                            <div> <button onClick={purchasedItem}>Buy</button> <button onClick={removeItem}>Remove</button> </div>
+                            <div> <button>Buy</button> <button>Remove</button> </div>
                         </div>
                     </div>
                 ))}
 
 
-                <div></div>
-
-                <div>buttons here</div>
-
+                
 
             </div>
 
@@ -41,12 +38,3 @@ function ShoppingList({ list }) {
 export default ShoppingList;
 
 
-{
-    list.map((grocery) => (
-        <tr key={grocery.id} >
-            <td>
-                {grocery.name}
-            </td>
-        </tr>
-    ))
-}
