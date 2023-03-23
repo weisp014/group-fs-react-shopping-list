@@ -54,4 +54,19 @@ router.get("/", (req, res) => {
     });
 });
 
+router.delete('/:id', (req, res) => {
+  let idToDelete = req.params.id;
+  const sqlText = `DELETE FROM "shoppingCart" WHERE id=$1;`
+
+  pool.query(sqlText, [idToDelete]) 
+    .then(result => {
+      console.log('Deleted item from the database with id:', idToDelete);
+      res.sendStatus(200);
+    })
+    .catch(error => {
+      console.log(error);
+      res.sendStatus(500);
+    })
+})
+
 module.exports = router;
