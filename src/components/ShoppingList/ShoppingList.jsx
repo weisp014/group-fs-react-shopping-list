@@ -1,19 +1,8 @@
 import axios from 'axios';
 
-function ShoppingList({ list, getGroceries, getGroceries }) {
-    console.log('in ShopList looking at props:', list)
 
-    const deleteItem = (id) => {
-        axios
-        .delete(`/cart/${id}`)
-        .then((response) => {
-          console.log(response);
-          getGroceries();
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
+function ShoppingList({ list, getGroceries }) {
+    console.log('in ShopList looking at props:', list)
 
 
     // Once purchased, buttons should be hidden and the item should show as "Purchased".
@@ -29,10 +18,17 @@ function ShoppingList({ list, getGroceries, getGroceries }) {
             })
     }
 
-
-
-
-
+    const deleteItem = (id) => {
+        axios
+        .delete(`/cart/${id}`)
+        .then((response) => {
+          console.log(response);
+          getGroceries();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
 
     return (
         <>
@@ -49,14 +45,17 @@ function ShoppingList({ list, getGroceries, getGroceries }) {
                             <div> {grocery.quantity} {grocery.unit} </div>
                         </div>
                         <div>
-                            <div> <button>Buy</button> <button>Remove</button> </div>
+                            <div>
+                                {grocery.purchased ? 
+                                 <p>Purchased</p>:
+                                    <div>
+                                        <button onClick={() => buyGrocery(grocery.id)}>Buy</button>
+                                        <button onClick={() => deleteItem(grocery.id)}>Remove</button>
+                                    </div> }
+                            </div>
                         </div>
                     </div>
                 ))}
-
-
-                
-
             </div>
         </>
     )
