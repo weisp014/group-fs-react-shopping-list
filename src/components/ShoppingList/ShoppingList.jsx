@@ -1,3 +1,4 @@
+import axios from 'axios';
 
 
 function ShoppingList({ list, getGroceries }) {
@@ -13,6 +14,31 @@ function ShoppingList({ list, getGroceries }) {
             });
     }
 
+function ShoppingList({ list, getGroceries, getGroceries }) {
+    console.log('in ShopList looking at props:', list)
+
+    const resetAll = () => {
+        axios.put('/cart', {})
+            .then((response) => {
+                getGroceries();
+            })
+            .catch((err) => {
+                alert('error resetting',err);
+            });
+    }
+
+
+    const deleteItem = (id) => {
+        axios
+        .delete(`/cart/${id}`)
+        .then((response) => {
+          console.log(response);
+          getGroceries();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
 
     return (
         <>
@@ -29,16 +55,11 @@ function ShoppingList({ list, getGroceries }) {
                             <div> {grocery.quantity} {grocery.unit} </div>
                         </div>
                         <div>
-                            <div> <button>Buy</button> <button>Remove</button> </div>
+                            <div> <button>Buy</button> <button onClick={() => deleteItem(grocery.id)}>Remove</button> </div>
                         </div>
                     </div>
                 ))}
-
-
-                
-
             </div>
-
         </>
     )
 
