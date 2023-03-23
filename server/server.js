@@ -10,7 +10,7 @@ app.use(express.static('build'));
 /** ---------- EXPRESS ROUTES ---------- **/
 // Create your API routes in a separate file
 // and plug them in here with `app.use()`
-const cartRouter = require('./routes/cart.routerjs')
+const cartRouter = require('./routes/cart.router.js')
 app.use('/cart', cartRouter)
 
 /** ---------- START SERVER ---------- **/
