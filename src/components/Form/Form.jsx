@@ -51,12 +51,9 @@ function Form() {
             name="unit"
             onChange={(evt) => setNewUnit(evt.target.value)}
           ></input>
-          <input
-            onSubmit={addItem}
-            type="submit"
-            id="submit"
-            name="submitBtn"
-          ></input>
+          <button onSubmit={addItem} type="submit" id="submit" name="submitBtn">
+            Save
+          </button>
         </form>
       </div>
     </div>
