@@ -29,7 +29,7 @@ router.get('/', (req, res) => {
             res.send(result.rows);
         })
         .catch( (err) => {
-            console.log(`Error making DB query ${sqlText}`, error);
+            console.log(`Error making DB query ${sqlText}`, err);
             res.sendStatus(500);
         });
 });

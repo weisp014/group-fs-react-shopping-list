@@ -3,10 +3,12 @@
 function ShoppingList({ list }) {
     console.log('in ShopList looking at props:', list)
 
+
+
     return (
         <>
             <h2>Shopping List</h2>
-            <button>Reset</button> <button>Clear</button>
+            <button onClick={}>Reset</button> <button>Clear</button>
 
             <div>
                 {list.map((grocery) => (
