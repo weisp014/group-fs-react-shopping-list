@@ -1,0 +1,65 @@
+import { useState } from "react";
+
+function Form() {
+  let [newItemName, setNewItemName] = useState("");
+  let [newQuantity, setNewQuantity] = useState("");
+  let [newUnit, setNewUnit] = useState("");
+
+  const addItem = () => {
+    axios
+      .post("/cart", {
+        name: newItemName,
+        quantity: newQuantity,
+        unit: newUnit,
+      })
+      .then((response) => {
+        // clear inputs & GET requests here
+        console.log(response);
+      })
+      .catch((err) => {
+        alert("Error Adding Item");
+        console.log(err);
+      });
+  };
+
+  return (
+    <div>
+      <h1>Add Item</h1>
+      <div>
+        <form>
+          <label>Item:</label>
+          <input
+            value={newItemName}
+            type="text"
+            id="name"
+            name="name"
+            onChange={(evt) => setNewItemName(evt.target.value)}
+          ></input>
+          <label>Quanity:</label>
+          <input
+            value={newQuantity}
+            type="number"
+            id="quantity"
+            name="quantity"
+            onChange={(evt) => setNewQuantity(evt.target.value)}
+          ></input>
+          <label>Unit:</label>
+          <input
+            value={newUnit}
+            type="text"
+            id="unit"
+            name="unit"
+            onChange={(evt) => setNewUnit(evt.target.value)}
+          ></input>
+          <input
+            onSubmit={addItem}
+            type="submit"
+            id="submit"
+            name="submitBtn"
+          ></input>
+        </form>
+      </div>
+    </div>
+  );
+}
+export default Form;
