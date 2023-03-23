@@ -4,19 +4,7 @@ import axios from 'axios';
 function ShoppingList({ list, getGroceries }) {
     console.log('in ShopList looking at props:', list)
 
-    const resetAll = () => {
-        axios.put('/cart', {})
-            .then((response) => {
-                getGroceries();
-            })
-            .catch((err) => {
-                alert('error resetting',err);
-            });
-    }
-
-function ShoppingList({ list, getGroceries, getGroceries }) {
-    console.log('in ShopList looking at props:', list)
-
+    //TODO complete put request
     const resetAll = () => {
         axios.put('/cart', {})
             .then((response) => {
