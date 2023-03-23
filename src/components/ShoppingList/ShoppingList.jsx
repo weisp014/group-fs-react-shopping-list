@@ -1,7 +1,19 @@
+import axios from 'axios';
 
-
-function ShoppingList({ list }) {
+function ShoppingList({ list, getGroceries }) {
     console.log('in ShopList looking at props:', list)
+
+    const deleteItem = (id) => {
+        axios
+        .delete(`/cart/${id}`)
+        .then((response) => {
+          console.log(response);
+          getGroceries();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
 
     return (
         <>
@@ -18,16 +30,11 @@ function ShoppingList({ list }) {
                             <div> {grocery.quantity} {grocery.unit} </div>
                         </div>
                         <div>
-                            <div> <button>Buy</button> <button>Remove</button> </div>
+                            <div> <button>Buy</button> <button onClick={() => deleteItem(grocery.id)}>Remove</button> </div>
                         </div>
                     </div>
                 ))}
-
-
-                
-
             </div>
-
         </>
     )
 
