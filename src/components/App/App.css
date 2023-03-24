@@ -2,3 +2,27 @@ main {
   width: 90%;
   margin: auto;
 }
+
+.container { 
+  display: flex;
+  border: solid 1px transparent;
+  justify-content: center;
+}
+
+/* div {
+  border: solid black 1px;
+} */
+
+.boxContainer {
+  border-radius: 5px;
+  border: solid lightgray;
+  margin: 5px;
+  padding: 5px;
+  text-align: center;
+  
+}
+
+.Btn {
+  display: flex;
+  gap: 10px ;
+}

@@ -1,7 +1,22 @@
 import axios from 'axios';
 
+
 function ShoppingList({ list, getGroceries }) {
     console.log('in ShopList looking at props:', list)
+
+
+    // Once purchased, buttons should be hidden and the item should show as "Purchased".
+
+    const buyGrocery = (id) => {
+        console.log('inside BG ()')
+        axios.put(`/cart/${id}`)
+            .then(response => {
+                getGroceries()
+            })
+            .catch(err => {
+                alert('error')
+            })
+    }
 
     const deleteItem = (id) => {
         axios
@@ -30,19 +45,28 @@ function ShoppingList({ list, getGroceries }) {
     return (
         <>
             <h2>Shopping List</h2>
-            <button>Reset</button> <button onClick={deleteAllItems}>Clear</button>
+            <button >Reset</button> <button onClick={deleteAllItems}>Clear</button>
 
-            <div>
+            <div className='container' >
                 {list.map((grocery) => (
-                    <div key={grocery.id}>
+                    <div className='boxContainer' key={grocery.id}>
                         <div>
                             <div>{grocery.name}</div>
                         </div>
+                        <br></br>
                         <div>
                             <div> {grocery.quantity} {grocery.unit} </div>
                         </div>
+                        <br></br>
                         <div>
-                            <div> <button>Buy</button> <button onClick={() => deleteItem(grocery.id)}>Remove</button> </div>
+                            <div>
+                                {grocery.purchased ? 
+                                 <p>Purchased</p>:
+                                    <div className='Btn'>
+                                        <button onClick={() => buyGrocery(grocery.id)}>Buy</button>
+                                        <button onClick={() => deleteItem(grocery.id)}>Remove</button>
+                                    </div> }
+                            </div>
                         </div>
                     </div>
                 ))}

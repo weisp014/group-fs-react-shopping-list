@@ -4,6 +4,24 @@ const pool = require("../modules/pool.js");
 
 // TODO all routes
 
+//PUT route
+router.put("/:id", (req,res) => {
+    console.log('inside put request', req.params.id)
+    const groceryId = req.params.id;
+
+    const sqlText =` UPDATE "shoppingCart" SET "purchased" = 'true' WHERE id=$1	`;
+
+    pool.query(sqlText, [groceryId])
+    .then(result => {
+        res.sendStatus(200)
+        console.log('inside put below then')
+    })
+    .catch(err => {
+        res.sendStatus(500)
+    })
+})
+
+
 //POST route
 router.post("/", (req, res) => {
   const newItem = req.body;
