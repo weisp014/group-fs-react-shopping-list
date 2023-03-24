@@ -22,7 +22,7 @@ function ShoppingList({ list, getGroceries }) {
         axios
             .delete(`/cart/${id}`)
             .then((response) => {
-                onsole.log(response);
+                console.log(response);
                 getGroceries();
             })
             .catch((error) => {
