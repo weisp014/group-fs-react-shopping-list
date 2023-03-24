@@ -35,20 +35,22 @@ function ShoppingList({ list, getGroceries }) {
             <h2>Shopping List</h2>
             <button >Reset</button> <button>Clear</button>
 
-            <div>
+            <div className='container' >
                 {list.map((grocery) => (
-                    <div key={grocery.id}>
+                    <div className='boxContainer' key={grocery.id}>
                         <div>
                             <div>{grocery.name}</div>
                         </div>
+                        <br></br>
                         <div>
                             <div> {grocery.quantity} {grocery.unit} </div>
                         </div>
+                        <br></br>
                         <div>
                             <div>
                                 {grocery.purchased ? 
                                  <p>Purchased</p>:
-                                    <div>
+                                    <div className='Btn'>
                                         <button onClick={() => buyGrocery(grocery.id)}>Buy</button>
                                         <button onClick={() => deleteItem(grocery.id)}>Remove</button>
                                     </div> }
