@@ -4,6 +4,18 @@ import axios from 'axios';
 function ShoppingList({ list, getGroceries }) {
     console.log('in ShopList looking at props:', list)
 
+    // PUT RESET
+    const resetAll = () => {
+        axios.put('/cart', {})
+            .then((response) => {
+                getGroceries();
+            })
+            .catch((err) => {
+                alert('error resetting',err);
+            });
+    }
+
+
 
     // Once purchased, buttons should be hidden and the item should show as "Purchased".
 
@@ -45,7 +57,7 @@ function ShoppingList({ list, getGroceries }) {
     return (
         <>
             <h2>Shopping List</h2>
-            <button >Reset</button> <button onClick={deleteAllItems}>Clear</button>
+            <button onClick={resetAll}>Reset</button> <button onClick={deleteAllItems}>Clear</button>
 
             <div className='container' >
                 {list.map((grocery) => (
