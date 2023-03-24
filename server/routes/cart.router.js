@@ -51,4 +51,21 @@ router.delete('/:id', (req, res) => {
     })
 })
 
+
+
+// PUT RESET
+router.put('/', (req, res) => {
+    const sqlText = `UPDATE "shoppingCart" SET "purchased"=false;`;
+    
+    pool.query(sqlText)
+        .then( (result) => {
+            console.log('Reset all purchased items');
+            res.sendStatus(200);
+        })
+        .catch(err => {
+            console.log(err);
+            res.sendStatus(500);
+        })
+})
+
 module.exports = router;
