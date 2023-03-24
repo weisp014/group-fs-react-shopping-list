@@ -69,4 +69,18 @@ router.delete('/:id', (req, res) => {
     })
 })
 
+router.delete('/', (req, res) => {
+  const sqlText = `DELETE FROM "shoppingCart";`
+
+  pool.query(sqlText) 
+    .then(result => {
+      console.log('Deleted all items from the database');
+      res.sendStatus(200);
+    })
+    .catch(error => {
+      console.log(error);
+      res.sendStatus(500);
+    })
+})
+
 module.exports = router;

@@ -13,6 +13,7 @@ app.use(express.static("build"));
 
 const cartRouter = require("./routes/cart.router.js");
 app.use("/cart", cartRouter);
+app.use('/deleteAll', cartRouter);
 
 /** ---------- START SERVER ---------- **/
 app.listen(PORT, () => {

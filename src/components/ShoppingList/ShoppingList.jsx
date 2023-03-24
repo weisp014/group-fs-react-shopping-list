@@ -20,20 +20,32 @@ function ShoppingList({ list, getGroceries }) {
 
     const deleteItem = (id) => {
         axios
-        .delete(`/cart/${id}`)
-        .then((response) => {
-          console.log(response);
-          getGroceries();
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+            .delete(`/cart/${id}`)
+            .then((response) => {
+                console.log(response);
+                getGroceries();
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
+    const deleteAllItems = () => {
+        axios
+            .delete(`/deleteAll`)
+            .then((response) => {
+                console.log(response);
+                getGroceries();
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     return (
         <>
             <h2>Shopping List</h2>
-            <button >Reset</button> <button>Clear</button>
+            <button >Reset</button> <button onClick={deleteAllItems}>Clear</button>
 
             <div className='container' >
                 {list.map((grocery) => (
