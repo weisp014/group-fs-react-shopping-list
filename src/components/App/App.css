@@ -3,7 +3,7 @@ main {
   margin: auto;
 }
 
-.container { 
+.container {
   display: flex;
   border: solid 1px transparent;
   justify-content: center;
@@ -19,10 +19,9 @@ main {
   margin: 5px;
   padding: 5px;
   text-align: center;
-  
 }
 
 .Btn {
   display: flex;
-  gap: 10px ;
+  gap: 10px;
 }

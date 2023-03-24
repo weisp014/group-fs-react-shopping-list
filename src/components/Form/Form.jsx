@@ -42,6 +42,7 @@ function Form({ getGroceries }) {
             name="name"
             onChange={(evt) => setNewItemName(evt.target.value)}
           ></input>
+          <span></span>
           <label>Quanity:</label>
           <input
             value={newQuantity}
@@ -50,6 +51,7 @@ function Form({ getGroceries }) {
             name="quantity"
             onChange={(evt) => setNewQuantity(evt.target.value)}
           ></input>
+          <span></span>
           <label>Unit:</label>
           <input
             value={newUnit}
