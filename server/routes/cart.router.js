@@ -4,6 +4,24 @@ const pool = require("../modules/pool.js");
 
 // TODO all routes
 
+//PUT route
+router.put("/:id", (req, res) => {
+  console.log("inside put request", req.params.id);
+  const groceryId = req.params.id;
+
+  const sqlText = ` UPDATE "shoppingCart" SET "purchased" = 'true' WHERE id=$1	`;
+
+  pool
+    .query(sqlText, [groceryId])
+    .then((result) => {
+      res.sendStatus(200);
+      console.log("inside put below then");
+    })
+    .catch((err) => {
+      res.sendStatus(500);
+    });
+});
+
 //POST route
 router.post("/", (req, res) => {
   const newItem = req.body;
@@ -32,6 +50,53 @@ router.get("/", (req, res) => {
     })
     .catch((err) => {
       console.log(`Error making DB query ${sqlText}`, error);
+      res.sendStatus(500);
+    });
+});
+
+router.delete("/:id", (req, res) => {
+  let idToDelete = req.params.id;
+  const sqlText = `DELETE FROM "shoppingCart" WHERE id=$1;`;
+
+  pool
+    .query(sqlText, [idToDelete])
+    .then((result) => {
+      console.log("Deleted item from the database with id:", idToDelete);
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+    });
+});
+
+// PUT RESET
+router.put("/", (req, res) => {
+  const sqlText = `UPDATE "shoppingCart" SET "purchased"=false;`;
+
+  pool
+    .query(sqlText)
+    .then((result) => {
+      console.log("Reset all purchased items");
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(500);
+    });
+});
+
+router.delete("/", (req, res) => {
+  const sqlText = `DELETE FROM "shoppingCart";`;
+
+  pool
+    .query(sqlText)
+    .then((result) => {
+      console.log("Deleted all items from the database");
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log(error);
       res.sendStatus(500);
     });
 });
